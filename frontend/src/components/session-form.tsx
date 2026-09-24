@@ -33,7 +33,10 @@ export function SessionForm() {
     setLoading(true);
     try {
       const session = await createSession({ title, course, teacher, date });
-      router.push(`/sessions/${session.id}`);
+      // 这里必须整页跳转：静态导出时 Next 的客户端路由会把动态路由的地址
+      // 规范化成占位参数（实测地址栏会变成 /sessions/_placeholder/），
+      // 真实 id 会丢。详见 @/components/session-link 的注释。
+      window.location.assign(`/sessions/${session.id}`);
     } catch (err) {
       setError(err instanceof ApiError ? String(err.detail) : "创建失败，请稍后重试");
     } finally {
@@ -101,4 +104,3 @@ export function SessionForm() {
     </Card>
   );
 }
-

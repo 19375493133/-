@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Mic2, Plus, Trash2 } from "lucide-react";
 
+import { SessionLink } from "@/components/session-link";
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/status-badge";
 import { formatDateTime, formatDuration } from "@/lib/utils";
@@ -70,13 +71,13 @@ export function SessionList({
 
           <div className="flex shrink-0 items-center gap-1">
             <Button asChild size="sm">
-              <Link href={`/sessions/${session.id}/record`}>
+              <SessionLink href={`/sessions/${session.id}/record`}>
                 <Mic2 className="mr-1.5 h-4 w-4" />
                 录音
-              </Link>
+              </SessionLink>
             </Button>
             <Button asChild size="sm" variant="ghost">
-              <Link href={`/sessions/${session.id}`}>详情</Link>
+              <SessionLink href={`/sessions/${session.id}`}>详情</SessionLink>
             </Button>
             <Button
               size="icon"
