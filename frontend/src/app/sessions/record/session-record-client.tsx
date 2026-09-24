@@ -9,7 +9,6 @@ import { HighlightPanel } from "@/components/highlight-panel";
 import { HighlightList } from "@/components/highlight-list";
 import { MindMapPanel } from "@/components/mind-map";
 import { TranscriptList } from "@/components/transcript-list";
-import { SessionLink } from "@/components/session-link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -206,10 +205,10 @@ function RecordView({ sessionId }: { sessionId: string }) {
     <main className="mx-auto max-w-5xl px-6 py-10">
       <div className="mb-4 flex flex-wrap gap-2">
         <Button variant="ghost" asChild>
-          <SessionLink href={`/sessions/${sessionId}`}>
+          <Link href={`/sessions/detail/?id=${sessionId}`}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             返回详情
-          </SessionLink>
+          </Link>
         </Button>
         <Button variant="ghost" asChild>
           <Link href="/">

@@ -6,7 +6,6 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, GitBranch, Mic2 } from "lucide-react";
 
 import { TranscriptList } from "@/components/transcript-list";
-import { SessionLink } from "@/components/session-link";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -156,16 +155,16 @@ function SessionDetailView({ sessionId }: { sessionId: string }) {
         </div>
         <div className="flex gap-2">
           <Button asChild variant="outline">
-            <SessionLink href={`/sessions/${sessionId}/mindmap`}>
+            <Link href={`/sessions/mindmap/?id=${sessionId}`}>
               <GitBranch className="mr-2 h-4 w-4" />
               思维导图
-            </SessionLink>
+            </Link>
           </Button>
           <Button asChild>
-            <SessionLink href={`/sessions/${sessionId}/record`}>
+            <Link href={`/sessions/record/?id=${sessionId}`}>
               <Mic2 className="mr-2 h-4 w-4" />
               去录音
-            </SessionLink>
+            </Link>
           </Button>
         </div>
       </div>
