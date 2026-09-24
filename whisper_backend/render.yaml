@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: classroom-whisper-backend
+    runtime: docker
+    dockerfilePath: ./whisper_backend/Dockerfile
+    plan: free
+    envVars:
+      - key: WHISPER_MODEL
+        value: base
+      - key: WHISPER_DEVICE
+        value: cpu
+      - key: WHISPER_COMPUTE_TYPE
+        value: int8
+      - key: HF_ENDPOINT
+        value: https://hf-mirror.com
+      - key: CORS_ORIGINS
+        value: https://classroom-listener-ai.netlify.app,http://127.0.0.1:3000,http://localhost:3000
+      - key: WHISPER_API_KEY
+        generateValue: true

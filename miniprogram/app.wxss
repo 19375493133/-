@@ -1,0 +1,207 @@
+/* 聆听 · 暖秋写实主题
+   配色取自秋日午后：深栗底、琥珀高光、羊皮纸色文字，标题用衬线字强化纸感。 */
+
+page {
+  background-color: #1b100b;
+  background-image: linear-gradient(180deg, #1b100b 0%, #2b1a11 46%, #26160f 100%);
+  color: #f6e9da;
+  font-size: 28rpx;
+  line-height: 1.7;
+  font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+.container {
+  padding: 32rpx 32rpx 64rpx;
+}
+
+/* 顶部头图：生成的暖秋写实底图 + 渐变蒙版，保证文字可读 */
+.hero {
+  position: relative;
+  height: 360rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  margin-bottom: 28rpx;
+  box-shadow: 0 16rpx 40rpx rgba(0, 0, 0, 0.45);
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(24, 14, 9, 0.05) 0%,
+    rgba(24, 14, 9, 0.35) 52%,
+    rgba(20, 11, 7, 0.86) 100%
+  );
+}
+
+.hero-text {
+  position: absolute;
+  left: 36rpx;
+  right: 36rpx;
+  bottom: 32rpx;
+}
+
+.hero-leaf {
+  position: absolute;
+  right: 20rpx;
+  top: 16rpx;
+  width: 128rpx;
+  height: 128rpx;
+  opacity: 0.9;
+  transform: rotate(14deg);
+}
+
+.hero-title {
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: 60rpx;
+  font-weight: 700;
+  letter-spacing: 8rpx;
+  color: #fff6e8;
+  text-shadow: 0 4rpx 18rpx rgba(0, 0, 0, 0.55);
+}
+
+.hero-sub {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #f0d8b8;
+  letter-spacing: 2rpx;
+  text-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.6);
+}
+
+.card {
+  background: linear-gradient(160deg, rgba(58, 36, 24, 0.96) 0%, rgba(40, 24, 16, 0.96) 100%);
+  border: 1rpx solid rgba(197, 143, 84, 0.28);
+  border-radius: 22rpx;
+  padding: 30rpx;
+  margin-bottom: 26rpx;
+  box-shadow: 0 10rpx 30rpx rgba(0, 0, 0, 0.32);
+}
+
+.card-soft {
+  background: rgba(46, 29, 19, 0.72);
+  border: 1rpx solid rgba(197, 143, 84, 0.18);
+  border-radius: 18rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.title {
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #ffe9cf;
+  margin-bottom: 14rpx;
+  letter-spacing: 2rpx;
+}
+
+.subtitle {
+  font-size: 26rpx;
+  color: #e0bd93;
+  margin-bottom: 10rpx;
+}
+
+.muted {
+  color: #bda189;
+  font-size: 24rpx;
+}
+
+.accent {
+  color: #f0b566;
+}
+
+.divider {
+  height: 1rpx;
+  background: linear-gradient(
+    90deg,
+    rgba(197, 143, 84, 0) 0%,
+    rgba(197, 143, 84, 0.45) 50%,
+    rgba(197, 143, 84, 0) 100%
+  );
+  margin: 20rpx 0;
+}
+
+.btn {
+  background: linear-gradient(135deg, #d99a52 0%, #b96f31 100%);
+  color: #2a170d;
+  font-weight: 600;
+  border-radius: 16rpx;
+  padding: 22rpx 0;
+  text-align: center;
+  margin-top: 20rpx;
+  letter-spacing: 2rpx;
+  box-shadow: 0 8rpx 22rpx rgba(185, 111, 49, 0.32);
+}
+
+.btn.ghost {
+  background: rgba(197, 143, 84, 0.10);
+  border: 1rpx solid rgba(224, 181, 102, 0.5);
+  color: #f0d0a0;
+  box-shadow: none;
+}
+
+.btn.danger {
+  background: linear-gradient(135deg, #b6522f 0%, #8f3418 100%);
+  color: #fff2e2;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.input {
+  background: rgba(28, 17, 11, 0.85);
+  border: 1rpx solid rgba(197, 143, 84, 0.35);
+  border-radius: 14rpx;
+  padding: 20rpx;
+  color: #f6e9da;
+  margin-top: 12rpx;
+  font-size: 26rpx;
+}
+
+.pill {
+  display: inline-block;
+  border-radius: 999rpx;
+  padding: 6rpx 20rpx;
+  font-size: 22rpx;
+  background: rgba(240, 181, 102, 0.14);
+  color: #f0b566;
+  border: 1rpx solid rgba(240, 181, 102, 0.3);
+}
+
+.error {
+  color: #ff9d78;
+  font-size: 24rpx;
+  margin-top: 12rpx;
+}
+
+.warn {
+  color: #f0b566;
+  font-size: 24rpx;
+  margin-top: 12rpx;
+}
+
+.wave {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 84rpx;
+  gap: 6rpx;
+}
+
+.wave-bar {
+  width: 6rpx;
+  border-radius: 6rpx;
+  background: linear-gradient(180deg, #f5c377 0%, #c8873c 100%);
+}

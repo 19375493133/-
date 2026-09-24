@@ -1,0 +1,11 @@
+<view wx:if="{{!url}}" class="container">
+  <view class="card">
+    <view class="title">网页版（web-view）</view>
+    <view class="muted">填一个 H5 地址，用小程序内嵌打开。仅企业/组织主体可用。</view>
+    <input class="input" value="{{draft}}" bindinput="onInput" placeholder="https://你的H5地址" />
+    <view class="btn" bindtap="open">打开</view>
+    <view wx:if="{{message}}" class="warn">{{message}}</view>
+  </view>
+</view>
+
+<web-view wx:else src="{{url}}" binderror="onError"></web-view>

@@ -1,0 +1,7 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "聆听：把小程序的请求转发到后端容器（免域名 / 免备案）",
+  "main": "index.js",
+  "dependencies": {}
+}

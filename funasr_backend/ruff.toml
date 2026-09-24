@@ -1,0 +1,7 @@
+# 与 backend/pyproject.toml 保持一致的 lint 规则，方便本地单独跑 ruff。
+line-length = 100
+target-version = "py311"
+
+[lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501", "B008"]

@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/record/record",
+    "pages/detail/detail",
+    "pages/settings/settings",
+    "pages/webview/webview"
+  ],
+  "window": {
+    "navigationBarTitleText": "聆听",
+    "navigationBarBackgroundColor": "#241610",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#1b100b",
+    "backgroundTextStyle": "dark"
+  },
+  "requiredPrivateInfos": [],
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
+}

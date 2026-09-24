@@ -1,0 +1,52 @@
+<view class="container">
+  <view class="hero">
+    <image class="hero-image" src="/assets/autumn-hero.png" mode="aspectFill"></image>
+    <image class="hero-leaf" src="/assets/leaf.png" mode="aspectFit"></image>
+    <view class="hero-mask"></view>
+    <view class="hero-text">
+      <view class="hero-title">聆听</view>
+      <view class="hero-sub">课堂 · 会议 · 边听边记</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="row">
+      <view>
+        <view class="subtitle">当前连接方式</view>
+        <view class="muted">{{modeLabel}}</view>
+      </view>
+      <view class="pill" bindtap="openSettings">更改</view>
+    </view>
+    <view wx:if="{{needConfig}}" class="warn">
+      还没有配置后台。个人使用推荐选「微信云托管」：不用备案域名，也不用公网地址。
+    </view>
+    <view class="divider"></view>
+    <view class="btn" bindtap="createSession">新建听课会话</view>
+    <view style="display:flex;gap:16rpx">
+      <view class="btn ghost" style="flex:1" bindtap="openSettings">连接设置</view>
+      <view class="btn ghost" style="flex:1" bindtap="openWebview">网页版</view>
+    </view>
+  </view>
+
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+  <view wx:if="{{loading}}" class="muted">正在读取会话…</view>
+
+  <view wx:for="{{sessions}}" wx:key="id" class="card">
+    <view class="row">
+      <view class="title" style="margin-bottom:0">{{item.title}}</view>
+      <view class="pill">{{item.status}}</view>
+    </view>
+    <view class="muted" style="margin-top:8rpx">
+      {{item.course || '未填写课程'}} · {{item.teacher || '未填写教师'}} · {{item.date}} · {{item.duration}} 秒
+    </view>
+    <view class="divider"></view>
+    <view style="display:flex;gap:16rpx">
+      <view class="btn" style="flex:1;margin-top:0" data-id="{{item.id}}" bindtap="openRecord">去聆听</view>
+      <view class="btn ghost" style="flex:1;margin-top:0" data-id="{{item.id}}" bindtap="openDetail">查看记录</view>
+    </view>
+  </view>
+
+  <view wx:if="{{!loading && sessions.length === 0}}" class="card muted">
+    还没有记录。点「新建听课会话」，上课或开会时按下开始就好。
+  </view>
+</view>

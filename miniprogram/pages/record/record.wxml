@@ -1,0 +1,72 @@
+<wxs src="../../utils/format.wxs" module="fmt" />
+
+<view class="container">
+  <view class="card">
+    <view class="title">{{session.title || '录音'}}</view>
+    <view class="muted">{{session.course || '未填写课程'}} · {{session.teacher || '未填写教师'}}</view>
+  </view>
+
+  <view class="card">
+    <view class="muted">请遵守当地法律和课堂规定，必要时征得老师同意。录音会上传到你的后端服务。</view>
+
+    <view style="text-align:center;margin:24rpx 0">
+      <view style="font-size:64rpx;font-weight:700">{{elapsedLabel}}</view>
+      <view class="muted">
+        {{phase === 'recording' ? '录音中' : phase === 'paused' ? '已暂停' :
+          phase === 'uploading' ? '正在上传并合并…' : phase === 'done' ? '已完成' :
+          phase === 'error' ? '出错了' : '准备开始'}}
+      </view>
+    </view>
+
+    <view class="wave">
+      <view wx:for="{{bars}}" wx:key="index" class="wave-bar" style="height:{{item}}rpx"></view>
+    </view>
+
+    <view wx:if="{{phase === 'idle'}}" class="btn" bindtap="start">开始录音</view>
+    <view wx:if="{{phase === 'recording'}}" class="btn ghost" bindtap="pause">暂停</view>
+    <view wx:if="{{phase === 'paused'}}" class="btn ghost" bindtap="resume">继续</view>
+    <view wx:if="{{phase === 'recording' || phase === 'paused'}}" class="btn danger" bindtap="stop">
+      结束录音
+    </view>
+    <view wx:if="{{phase === 'paused'}}" class="muted" style="text-align:center">
+      已暂停：可以「继续」接着录，也可以直接「结束录音」保存。
+    </view>
+    <view wx:if="{{phase === 'done'}}" class="btn ghost" bindtap="openDetail">查看详情</view>
+
+    <view class="muted" style="margin-top:16rpx">转写状态：{{wsState}}</view>
+    <view wx:if="{{uploadedChunks > 0}}" class="muted">已上传 {{uploadedChunks}} 段录音</view>
+    <view wx:if="{{speechHint}}" class="warn">{{speechHint}}</view>
+    <view wx:if="{{notice}}" class="muted">{{notice}}</view>
+    <view wx:if="{{error}}" class="error">{{error}}</view>
+  </view>
+
+  <view class="card">
+    <view class="title">实时字幕</view>
+    <view wx:if="{{interim}}" class="muted">临时字幕：{{interim}}</view>
+    <view wx:for="{{finals}}" wx:key="id" style="margin-top:12rpx">
+      <text class="muted">{{fmt.formatTime(item.start_seconds)}} · </text>
+      <text>{{item.text}}</text>
+    </view>
+    <view wx:if="{{!interim && finals.length === 0}}" class="muted">
+      开始录音后，老师说话会在这里出现字幕。
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="title">课堂标记</view>
+    <view style="display:flex;gap:12rpx;flex-wrap:wrap;margin-bottom:16rpx">
+      <view wx:for="{{markTypes}}" wx:key="value"
+            class="btn {{markType === item.value ? '' : 'ghost'}}"
+            style="flex:1;min-width:140rpx;margin-top:0"
+            data-value="{{item.value}}" bindtap="selectMarkType">
+        {{item.label}}
+      </view>
+    </view>
+    <input class="input" value="{{markText}}" bindinput="onMarkInput"
+           placeholder="随想随记，会自动记录当前时间戳" placeholder-class="muted" />
+    <view class="btn" bindtap="addMark">添加标记</view>
+    <view wx:for="{{highlights}}" wx:key="id" class="muted" style="margin-top:12rpx">
+      [{{fmt.formatTime(item.timestamp_seconds)}}] {{item.type}} · {{item.content}}
+    </view>
+  </view>
+</view>

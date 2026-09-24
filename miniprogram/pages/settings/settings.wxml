@@ -1,0 +1,70 @@
+<view class="container">
+  <view class="card">
+    <view class="title">连接方式</view>
+    <view class="muted">三种都走微信内网，不需要在小程序后台配域名（「自建域名」除外）。</view>
+    <view style="display:flex;gap:12rpx;margin-top:20rpx;flex-wrap:wrap">
+      <view class="btn {{mode === 'cloudfn' ? '' : 'ghost'}}" style="flex:1;min-width:180rpx;margin-top:0"
+            data-value="cloudfn" bindtap="selectMode">云函数</view>
+      <view class="btn {{mode === 'cloud' ? '' : 'ghost'}}" style="flex:1;min-width:180rpx;margin-top:0"
+            data-value="cloud" bindtap="selectMode">云托管</view>
+      <view class="btn {{mode === 'custom' ? '' : 'ghost'}}" style="flex:1;min-width:180rpx;margin-top:0"
+            data-value="custom" bindtap="selectMode">自建域名</view>
+    </view>
+  </view>
+
+  <view wx:if="{{mode === 'cloudfn'}}" class="card">
+    <view class="title">云函数参数</view>
+    <view class="muted">
+      小程序 → 云函数 api（微信内网）→ 后端容器。只要填云开发环境 ID，
+      后端地址写在云函数的环境变量 BACKEND_BASE_URL 里。
+    </view>
+    <view class="muted" style="margin-top:20rpx">云开发环境 ID</view>
+    <input class="input" value="{{cloudEnv}}" data-field="cloudEnv" bindinput="onInput"
+           placeholder="例如 cloud1-d9g8ggp3eba5ba3c0" placeholder-class="muted" />
+    <view class="muted" style="margin-top:16rpx">
+      云数据库会同步保存会话 / 转写 / 重点（集合由云函数 initdb 创建）。
+    </view>
+  </view>
+
+  <view wx:if="{{mode === 'cloud'}}" class="card">
+    <view class="title">云托管参数</view>
+    <view class="muted">都在微信云托管控制台：环境 ID 在「环境设置」，服务名就是部署时填的服务名称。</view>
+    <view class="muted" style="margin-top:20rpx">环境 ID</view>
+    <input class="input" value="{{cloudEnv}}" data-field="cloudEnv" bindinput="onInput"
+           placeholder="例如 prod-1a2b3c4d5e" placeholder-class="muted" />
+    <view class="muted" style="margin-top:20rpx">服务名</view>
+    <input class="input" value="{{cloudService}}" data-field="cloudService" bindinput="onInput"
+           placeholder="例如 classroom-assistant" placeholder-class="muted" />
+    <view class="muted" style="margin-top:16rpx">
+      实时字幕会自动走 connectContainer，不需要额外填 WebSocket 地址。
+    </view>
+  </view>
+
+  <view wx:if="{{mode === 'custom'}}" class="card">
+    <view class="title">自建域名参数</view>
+    <view class="muted">填我们的容器地址，例如 https://xxxx.modelscope.space。</view>
+    <input class="input" value="{{apiBase}}" data-field="apiBase" bindinput="onInput"
+           placeholder="https://你的后端域名" placeholder-class="muted" />
+    <view class="muted" style="margin-top:20rpx">实时字幕 WebSocket 地址</view>
+    <input class="input" value="{{wsBase}}" data-field="wsBase" bindinput="onInput"
+           placeholder="wss://你的后端域名/funasr" placeholder-class="muted" />
+    <view class="btn ghost" bindtap="fillFromApiBase">按后端地址自动生成</view>
+  </view>
+
+  <view class="card">
+    <view class="title">网页版（可选）</view>
+    <view class="muted">填 H5 地址后可以在小程序里用 web-view 打开（仅企业/组织主体可用）。</view>
+    <input class="input" value="{{webUrl}}" data-field="webUrl" bindinput="onInput"
+           placeholder="https://你的H5地址" placeholder-class="muted" />
+  </view>
+
+  <view class="btn" bindtap="save">保存设置</view>
+  <view wx:if="{{saved}}" class="muted" style="text-align:center;margin-top:16rpx">已保存</view>
+
+  <view class="card" style="margin-top:26rpx">
+    <view class="title">上线前要做的三件事</view>
+    <view class="muted">1.「用户隐私保护指引」里声明麦克风与录音，否则录音接口会被平台拦截。</view>
+    <view class="muted">2. 服务类目选「工具 → 办公」，个人主体即可，不需要额外资质。</view>
+    <view class="muted">3. 用自建域名时必须在小程序后台配置 request / uploadFile / socket 三类合法域名（HTTPS + 已备案）；用云托管则不需要。</view>
+  </view>
+</view>

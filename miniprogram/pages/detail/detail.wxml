@@ -1,0 +1,41 @@
+<wxs src="../../utils/format.wxs" module="fmt" />
+
+<view class="container">
+  <view wx:if="{{loading}}" class="muted">加载中…</view>
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+
+  <view wx:if="{{session}}" class="card">
+    <view class="title">{{session.title}}</view>
+    <view class="muted">{{session.course || '未填写课程'}} · {{session.teacher || '未填写教师'}}</view>
+    <view class="muted">状态：{{session.status}} · 时长：{{session.duration}} 秒</view>
+  </view>
+
+  <view class="card">
+    <view class="title">提取到的重点</view>
+    <view wx:if="{{points.length === 0}}" class="muted">还没有重点，先在录音页录一段。</view>
+    <view wx:for="{{points}}" wx:key="index" style="margin-top:12rpx">
+      <text class="muted">[{{fmt.formatTime(item.start_seconds)}}] {{item.category}} · </text>
+      <text>{{item.text}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="title">实时转写</view>
+    <view wx:if="{{transcript.length === 0}}" class="muted">还没有转写内容。</view>
+    <view wx:for="{{transcript}}" wx:key="id" style="margin-top:12rpx">
+      <text class="muted">{{fmt.formatTime(item.start_seconds)}} · </text>
+      <text>{{item.text}}</text>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="title">思维导图大纲</view>
+    <view class="muted">
+      小程序里先以大纲形式展示（markmap 是网页组件）；点下面按钮可以复制，粘到网页版或导图工具里出图。
+    </view>
+    <scroll-view scroll-y style="max-height:600rpx;margin-top:16rpx">
+      <text style="font-size:22rpx;color:#9ca3af">{{markdown}}</text>
+    </scroll-view>
+    <view class="btn ghost" bindtap="copyMarkdown">复制大纲</view>
+  </view>
+</view>

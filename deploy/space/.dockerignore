@@ -1,0 +1,15 @@
+# 镜像里不需要这些：虚拟环境、模型缓存、本地数据、前端
+.venv/
+**/.venv/
+.modelscope/
+**/.modelscope/
+__pycache__/
+**/__pycache__/
+*.pyc
+data/
+data-space-test/
+frontend/
+node_modules/
+.tools/
+data/
+*.db

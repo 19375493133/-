@@ -1,0 +1,22 @@
+{
+  "envId": "cloud1-d9g8ggp3eba5ba3c0",
+  "framework": {
+    "name": "lingting",
+    "plugins": {}
+  },
+  "functionRoot": "./functions",
+  "functions": [
+    {
+      "name": "api",
+      "timeout": 20,
+      "envVariables": {
+        "BACKEND_BASE_URL": ""
+      }
+    },
+    {
+      "name": "initdb",
+      "timeout": 20,
+      "envVariables": {}
+    }
+  ]
+}

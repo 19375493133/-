@@ -1,0 +1,14 @@
+// WXS 只能用 ES5 语法，这里做时间格式化
+var pad = function (value) {
+  return value < 10 ? "0" + value : "" + value;
+};
+
+var formatTime = function (seconds) {
+  var total = Math.max(0, Math.floor(seconds || 0));
+  var minutes = Math.floor(total / 60);
+  return pad(minutes) + ":" + pad(total % 60);
+};
+
+module.exports = {
+  formatTime: formatTime,
+};

@@ -1,0 +1,14 @@
+# 后端 API（backend/pyproject.toml）
+fastapi>=0.115.0,<1.0.0
+uvicorn[standard]>=0.30.0,<1.0.0
+sqlalchemy>=2.0.36,<3.0.0
+pydantic>=2.9.0,<3.0.0
+python-dotenv>=1.0.1,<2.0.0
+python-multipart>=0.0.12,<1.0.0
+httpx>=0.27.0,<1.0.0
+
+# FunASR 实时转写（funasr_backend/requirements.txt）
+funasr>=1.4.0,<2.0.0
+torch>=2.2.0
+soundfile>=0.12.0
+numpy>=1.26.0
